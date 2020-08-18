@@ -19,18 +19,15 @@ dag = DAG(
     'kubernetes_sample', default_args=default_args, schedule_interval=timedelta(minutes=10))
 
 
-start = DummyOperator(task_id='run_this_first', dag=dag)
-
-passing = KubernetesPodOperator(namespace='default',
-                          image="Python:3.6",
-                          cmds=["Python","-c"],
-                          arguments=["print('hello world')"],
-                          labels={"foo": "bar"},
-                          name="passing-test",
-                          task_id="passing-task",
-                          get_logs=True,
-                          dag=dag
+task = KubernetesPodOperator(namespace='airflow',
+                            image="Python:3.6",
+                            cmds=["Python","-c"],
+                            arguments=["print('hello world')"],
+                            labels={"foo": "bar"},
+                            name="python-task",
+                            task_id="python-task",
+                            get_logs=True,
+                            dag=dag
                           )
 
 
-passing.set_upstream(start)
