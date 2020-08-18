@@ -16,7 +16,7 @@ default_args = {
 }
 
 dag = DAG(
-    'kubernetes_sample', default_args=default_args, schedule_interval=timedelta(minutes=10))
+    'kubernetes_operator_example', default_args=default_args, schedule_interval=timedelta(minutes=10))
 
 
 task = KubernetesPodOperator(namespace='airflow',
