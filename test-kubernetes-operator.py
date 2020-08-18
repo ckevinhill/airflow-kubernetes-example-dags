@@ -20,8 +20,8 @@ dag = DAG(
 
 
 task = KubernetesPodOperator(namespace='airflow',
-                            image="Python:3.6",
-                            cmds=["Python","-c"],
+                            image="python:3.8-slim-buster",
+                            cmds=["python","-c"],
                             arguments=["print('hello world')"],
                             labels={"foo": "bar"},
                             in_cluster=True,
