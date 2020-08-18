@@ -32,5 +32,16 @@ passing = KubernetesPodOperator(namespace='default',
                           dag=dag
                           )
 
+failing = KubernetesPodOperator(namespace='default',
+                          image="ubuntu:1604",
+                          cmds=["Python","-c"],
+                          arguments=["print('hello world')"],
+                          labels={"foo": "bar"},
+                          name="fail",
+                          task_id="failing-task",
+                          get_logs=True,
+                          dag=dag
+                          )
 
 passing.set_upstream(start)
+failing.set_upstream(start)
