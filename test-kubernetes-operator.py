@@ -28,6 +28,7 @@ task = KubernetesPodOperator(namespace='airflow',
                             name="python-task",
                             task_id="python-task",
                             get_logs=True,
+                            is_delete_operator_pod=True,
                             dag=dag
                           )
 
