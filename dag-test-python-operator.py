@@ -15,17 +15,16 @@ def print_hello():
 def print_world():
     print("world")
 
-hello_operator = PythonOperator(
+hello_task = PythonOperator(
     task_id='hello_task',
     python_callable=print_hello,
     dag=dag,
 )
 
-world_operator = PythonOperator(
+world_task = PythonOperator(
     task_id='world_task',
     python_callable=print_world,
     dag=dag,
 )
 
-
-hello_operator >> world_operator
+hello_task >> world_task
